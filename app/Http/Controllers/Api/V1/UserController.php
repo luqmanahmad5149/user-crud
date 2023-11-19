@@ -76,7 +76,7 @@ class UserController extends Controller
             } else {
                 return response()->json([
                     'status' => 'User not found!'
-                ], 201);
+                ], 400);
             }
     
             return response()->json(new UserResource($user), 201);
@@ -93,17 +93,20 @@ class UserController extends Controller
     public function deleteUser(Request $request) {
         try{
             $user = User::where('id', $request->userNo)->first();
+            $response = [];
 
             if($user) {
                 $user->delete();
-                $status = 'User successfully deleted!';
+                $response['status'] = 'User successfully deleted!';
+                $response['code'] = 200;
             } else {
-                $status = 'User not found!';
+                $response['status'] = 'User not found!';
+                $response['code'] = 400;
             }
-    
+
             return response()->json([
-                'status' => $status
-            ], 200);
+                'status' => $response['status']
+            ], $response['code']);
         } catch(\Exception $e) {
             throw new GeneralException($e->getMessage(), 500);
         }
