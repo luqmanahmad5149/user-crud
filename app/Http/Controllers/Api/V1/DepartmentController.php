@@ -3,65 +3,18 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreDepartmentRequest;
-use App\Http\Requests\UpdateDepartmentRequest;
+use App\Http\Resources\V1\DepartmentCollection;
 use App\Models\Department;
 
 class DepartmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retrieve all departments for display.
+     * @method GET
+     * @route /departments
      */
-    public function index()
+    public function getDepartments()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreDepartmentRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Department $department)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Department $department)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateDepartmentRequest $request, Department $department)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Department $department)
-    {
-        //
+        return response()->json(new DepartmentCollection(Department::all()), 200);
     }
 }

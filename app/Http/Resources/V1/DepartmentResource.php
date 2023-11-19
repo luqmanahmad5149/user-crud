@@ -14,6 +14,9 @@ class DepartmentResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'departmentNo' => $this->id,
+            'departmentName' => $this->name,
+        ];
     }
 }

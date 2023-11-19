@@ -9,8 +9,6 @@ use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use function PHPUnit\Framework\isNull;
-
 class UserController extends Controller
 {
     /**
